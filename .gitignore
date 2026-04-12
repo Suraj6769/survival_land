@@ -1,0 +1,30 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ── Node / Vite ───────────────────────────────────────────────────────────────
+ui/node_modules/
+ui/.vite/
+ui/dist/
+
+# ── Environment secrets — NEVER commit these ─────────────────────────────────
+.env
+.env.local
+.env.*.local
+ui/.env
+ui/.env.local
+ui/.env.*.local
+
+# ── OS / Editor ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

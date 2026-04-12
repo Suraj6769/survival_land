@@ -1,0 +1,84 @@
+name: Survival_Island
+version: "1.0.0"
+description: >
+  An AI-powered 2-D survival simulation where a HuggingFace LLM agent
+  autonomously makes survival decisions across a procedurally-generated
+  6000 × 3000 world. Built for the Meta PyTorch Hackathon.
+
+# ── Hugging Face Space ────────────────────────────────────────────────────────
+space:
+  repo_id: suraj291/Survival_Island   # change to your HF username/repo
+  sdk: docker
+  hardware: cpu-basic                  # upgrade to gpu-t4-small for local inference
+  title: "Survival Island – LLM Survival Agent"
+  emoji: 🏝️
+  colorFrom: green
+  colorTo: blue
+  pinned: false
+
+# ── Secrets / Variables  (set in HF Space → Settings → Variables and secrets)
+env:
+  secrets:
+    - name: HF_TOKEN
+      description: >
+        HuggingFace API token (read scope is enough for Inference API).
+        Also baked into the Vite bundle as VITE_HF_TOKEN at build time.
+
+  variables:
+    - name: HF_MODEL
+      default: "mistralai/Mistral-7B-Instruct-v0.2"
+      description: >
+        Any HF chat/instruct model compatible with the [INST] prompt format.
+        Alternatives: HuggingFaceH4/zephyr-7b-beta
+                      meta-llama/Llama-3.1-8B-Instruct (needs license accept)
+    - name: PORT
+      default: "7860"
+      description: Port exposed by the Docker container (HF Spaces default).
+
+# ── Build ─────────────────────────────────────────────────────────────────────
+build:
+  dockerfile: Dockerfile
+  context: .
+  steps:
+    - name: install_python_deps
+      run: pip install -r requirements.txt --no-cache-dir
+
+    - name: build_frontend
+      run: |
+        cd ui
+        npm ci
+        npm run build
+      env:
+        VITE_HF_TOKEN: "${HF_TOKEN}"
+        VITE_HF_MODEL: "${HF_MODEL}"
+
+# ── Runtime services ──────────────────────────────────────────────────────────
+services:
+  backend:
+    type: fastapi
+    entrypoint: "uvicorn server.app:app --host 0.0.0.0 --port 8000 --workers 1"
+    healthcheck: "/api/health"
+
+  frontend:
+    type: static
+    serve_dir: "ui/dist"
+
+# ── Model / hardware ──────────────────────────────────────────────────────────
+model:
+  framework: pytorch
+  task: text-generation
+  device: cpu          # set to cuda on gpu-* hardware tiers
+  load_in_8bit: false
+
+# ── Push ignore list ──────────────────────────────────────────────────────────
+push:
+  ignore:
+    - "ui/node_modules"
+    - "ui/.vite"
+    - "ui/dist"
+    - "__pycache__"
+    - "*.pyc"
+    - ".env"
+    - ".env.local"
+    - "ui/.env.local"
+    - ".git"

@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "survival-island-env"
+version = "1.0.0"
+description = "Survival Island OpenEnv Submission"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "openai",
+    "pydantic",
+    "requests",
+    "openenv-core>=0.2.0"
+]
+
+[project.scripts]
+server = "server.app:main"

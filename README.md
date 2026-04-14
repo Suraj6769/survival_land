@@ -1,33 +1,129 @@
-<<<<<<< HEAD
-# Survival Island Game
+# 🏝️ Survival Island Game: Evolutionary AI Simulation
 
-## Documentation
+Survival Island Game is a zero-player survival sandbox and AI simulation built entirely in a single HTML file using Three.js.
 
-### AI Environment
-This game simulates an AI-driven environment that adapts based on the player's actions and decisions, creating a unique gameplay experience every time. The AI uses reinforcement learning to improve its strategies and enhance player engagement.
+Watch as "Subject-01" (an autonomous AI agent) navigates a procedurally generated 3D world, manages multiple survival vitals, reacts to predators, and evolves across generations using a persistent "Trauma Memory" system.
 
-### LLM Inference
-The logic for language learning models (LLMs) is integrated into the gameplay mechanics, allowing AI characters to comprehend player inputs, making the interactions more immersive and dynamic. The LLM inference model evaluates player choices and provides feedback or dialogue that aligns with the game's context.
+As the "Architect," you can observe the simulation or intervene using a powerful God Mode interface.
 
-### OpenEnv Compliance
-The game is designed in accordance with OpenEnv standards, ensuring that the environment is appropriately defined and managed. It facilitates seamless interaction between the virtual world and the AI systems while maintaining a high level of performance.
-
-### Task Grading System
-A comprehensive task grading system is implemented, evaluating player performance based on specific criteria such as decision-making efficiency, resource management, and mission success rates. This feedback helps players understand their strengths and weaknesses, guiding them to improve their gameplay strategies.
-
-## Conclusion
-This README aims to provide a comprehensive understanding of the Survival Island Game environment and its components. The game incorporates advanced AI methods, ensuring a rich and engaging experience for players.
-=======
----
-title: Survival Island Game
-emoji: "🏝️"
-colorFrom: green
-colorTo: blue
-sdk: docker
-app_file: Dockerfile
-pinned: false
 ---
 
-Survival Island is an AI-powered survival simulation built as a Docker-based Hugging Face Space.
+## ✨ Key Features
 
-This repository uses `Dockerfile`, `openenv.yaml`, and a FastAPI backend with a React/Vite frontend.
+### 🧠 Zero-Player AI Sandbox
+Sit back and observe Subject-01 survive in a hostile environment using utility-based decision-making.
+
+### 📊 Dynamic Vitals Engine
+The AI manages 6 core survival stats:
+- Health  
+- Hunger  
+- Thirst  
+- Stamina  
+- Temperature  
+- Fear  
+
+### 🔁 Evolutionary Trauma System
+- Death resets the simulation  
+- The AI "remembers" past failures  
+- Starvation alters future behavior thresholds  
+- Surviving generations unlock permanent upgrades (e.g., speed boost)
+
+### 🌍 Procedural 3D World
+A 28x28 tile-based environment with diverse biomes:
+- Deep Ocean  
+- Shallows  
+- Beach  
+- Jungle  
+- Ruins  
+- Safe Haven  
+
+### 🎮 Architect Controls (God Mode)
+Interact with the simulation in real-time:
+- Trigger disasters (Flash Floods, Heatwaves, Night Freezes)
+- Smite or Bless the AI
+- Instantly modify vitals (e.g., Insta-Starve)
+- Spawn predators to test survival behavior
+
+### 🎥 Cinematic Rendering
+Powered by Three.js:
+- Dynamic lighting & shadows  
+- Exponential fog  
+- Oscillating water physics  
+- "Adrenaline Mode" with slow-motion & visual effects  
+
+---
+
+## 🚀 How to Run
+
+No setup required. Just follow these steps:
+
+1. Clone or download this repository  
+2. Open `index.html` in any modern browser (Chrome, Edge, Firefox, Safari)  
+3. The simulation starts automatically  
+
+> ⚠️ Note: Internet is required on first load to fetch the Three.js library (via CDN).
+
+---
+
+## 🧠 How the AI Works
+
+The system uses a **decoupled loop architecture**:
+
+### 🎯 Render Loop (60+ FPS)
+- Handles rendering (Three.js)
+- Camera updates
+- Physics & animations
+- UI updates  
+
+### ⚙️ Logic Loop (1 Hz)
+Runs once per second:
+- Updates vitals  
+- Evaluates environment  
+- Executes decision logic  
+
+---
+
+## 🧩 Decision System (Priority Queue)
+
+Subject-01 follows a strict hierarchy:
+
+- **P1 (Evacuation)**  
+  Escape disasters (e.g., flash floods → seek high ground)
+
+- **P2 (Urgent Needs)**  
+  If hunger/thirst is low → find food/water zones  
+
+- **P3 (Threat Response)**  
+  If predator detected → calculate fear  
+  - Fear > 80 → PANIC (run away)  
+
+- **P4/P5 (Idle Behavior)**  
+  Explore, recover stamina, and roam  
+
+---
+
+## 🛠️ Tech Stack
+
+- **HTML5 / CSS3** → UI, HUD, overlays  
+- **Vanilla JavaScript (ES6+)** → Core logic & AI system  
+- **Three.js (r128)** → 3D rendering, lighting, terrain  
+
+---
+
+## 🤝 Contributing
+
+This project is an experimental sandbox for AI + browser-based 3D simulation.
+
+### 💡 Future Ideas
+- A* Pathfinding  
+- Crafting / Base Building  
+- Day-Night Cycle  
+- Advanced Predator AI  
+
+### 🚀 Steps to Contribute
+
+```bash
+# Fork the repo
+git checkout -b feature/AmazingFeature
+git commit -m "Add some AmazingFeature"
+git push origin feature/AmazingFeature

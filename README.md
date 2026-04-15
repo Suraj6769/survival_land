@@ -126,4 +126,5 @@ This project is an experimental sandbox for AI + browser-based 3D simulation.
 
 
 
-#######
+[#######
+](https://huggingface.co/spaces/suraj291/Survival_Island_Game)
